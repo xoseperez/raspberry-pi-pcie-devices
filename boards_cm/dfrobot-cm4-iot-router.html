@@ -18,10 +18,12 @@
 <link rel="canonical" href="https://pipci.jeffgeerling.com//boards_cm/dfrobot-cm4-iot-router.html" />
 <meta property="og:url" content="https://pipci.jeffgeerling.com//boards_cm/dfrobot-cm4-iot-router.html" />
 <meta property="og:site_name" content="Raspberry Pi PCIe Devices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-11T11:32:23+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="DFRobot IoT Router Carrier Board Mini" />
 <script type="application/ld+json">
-{"description":"The IoT Router Board Mini is the smallest two-port dual-gigabit router board for the Compute Module 4. It is a no-frills 2-port gigabit router, with the 2nd port using an RTL8111 network chip on the PCI express bus, meaning you’ll have two full gigabit network interfaces.","url":"https://pipci.jeffgeerling.com//boards_cm/dfrobot-cm4-iot-router.html","@type":"WebPage","headline":"DFRobot IoT Router Carrier Board Mini","@context":"https://schema.org"}</script>
+{"description":"The IoT Router Board Mini is the smallest two-port dual-gigabit router board for the Compute Module 4. It is a no-frills 2-port gigabit router, with the 2nd port using an RTL8111 network chip on the PCI express bus, meaning you’ll have two full gigabit network interfaces.","url":"https://pipci.jeffgeerling.com//boards_cm/dfrobot-cm4-iot-router.html","@type":"BlogPosting","headline":"DFRobot IoT Router Carrier Board Mini","dateModified":"2022-10-11T11:32:23+00:00","datePublished":"2022-10-11T11:32:23+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pipci.jeffgeerling.com//boards_cm/dfrobot-cm4-iot-router.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -74,6 +76,21 @@
 
 <p>It is purpose-built for OpenWRT, but can run other distributions and software that is useful in router and switching scenarios. It includes one USB-C High Speed (2.0) port, and one USB-C port to supply power (5V @ 3A max).</p>
 
+<p>It can be made to work with Rasberry OS by compiling a new kernel (built in or as a kernel module).</p>
+
+<p>You can  <a href="https://github.com/geerlingguy/raspberry-pi-pcie-devices/tree/master/extras/cross-compile">cross-compile the Pi OS kernel</a> and use <code class="language-plaintext highlighter-rouge">menuconfig</code> to select the right driver to build:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Device Drivers
+  &gt; Network device support
+    &gt; Ethernet driver support
+      &gt; Realtek devices
+        &gt; Realtek 8169/8168/8101/8125 ethernet support
+</code></pre></div></div>
+
+<p>Check out <a href="https://wiki.dfrobot.com/Compute_Module_4_IoT_Router_Board_Mini_SKU_DFR0767">DFRobot’s documentation</a> on the board.</p>
+
+<p>You can also compile your own OpenWRT image specific to this board following instructions like <a href="https://gist.github.com/martin-niklasson/6912a7e5ba49b92801d54766f1d7277a">these instructions from GitHub user martin-niklasson</a>.</p>
+
         </div>
 
         <div class="board_videos">
@@ -82,6 +99,8 @@
               <ul>
                 
                   <li><a href="https://www.youtube.com/watch?v=w7teLVwi408">You call THAT a router?! 2 Tiny Raspberry Pi Routers</a></a></li>
+                
+                  <li><a href="https://www.youtube.com/watch?v=o2NTvaRv4Yg">Building a Better Raspberry Pi Router // RPi Compute Module 4, OpenWrt, DFRobot Carrier Board</a></a></li>
                 
               </ul>
             

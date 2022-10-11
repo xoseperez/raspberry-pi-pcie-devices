@@ -13,15 +13,17 @@
 <meta name="generator" content="Jekyll v3.9.0" />
 <meta property="og:title" content="VisionTek AMD Radeon 5450 1GB PCIe x16" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="This graphics card needs x1 to x16 powered adapter. The radeon driver for this card requires a kernel recompile, and the card is too old to be compatible with the amdgpu drivers." />
-<meta property="og:description" content="This graphics card needs x1 to x16 powered adapter. The radeon driver for this card requires a kernel recompile, and the card is too old to be compatible with the amdgpu drivers." />
+<meta name="description" content="This graphics card needs a x1 to x16 powered adapter. The radeon driver for this card requires a kernel recompile, and the card is too old to be compatible with the amdgpu drivers." />
+<meta property="og:description" content="This graphics card needs a x1 to x16 powered adapter. The radeon driver for this card requires a kernel recompile, and the card is too old to be compatible with the amdgpu drivers." />
 <link rel="canonical" href="https://pipci.jeffgeerling.com//cards_gpu/visiontek-radeon-5450-1gb.html" />
 <meta property="og:url" content="https://pipci.jeffgeerling.com//cards_gpu/visiontek-radeon-5450-1gb.html" />
 <meta property="og:site_name" content="Raspberry Pi PCIe Devices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-11T11:32:23+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="VisionTek AMD Radeon 5450 1GB PCIe x16" />
 <script type="application/ld+json">
-{"description":"This graphics card needs x1 to x16 powered adapter. The radeon driver for this card requires a kernel recompile, and the card is too old to be compatible with the amdgpu drivers.","url":"https://pipci.jeffgeerling.com//cards_gpu/visiontek-radeon-5450-1gb.html","@type":"WebPage","headline":"VisionTek AMD Radeon 5450 1GB PCIe x16","@context":"https://schema.org"}</script>
+{"description":"This graphics card needs a x1 to x16 powered adapter. The radeon driver for this card requires a kernel recompile, and the card is too old to be compatible with the amdgpu drivers.","url":"https://pipci.jeffgeerling.com//cards_gpu/visiontek-radeon-5450-1gb.html","@type":"BlogPosting","headline":"VisionTek AMD Radeon 5450 1GB PCIe x16","dateModified":"2022-10-11T11:32:23+00:00","datePublished":"2022-10-11T11:32:23+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pipci.jeffgeerling.com//cards_gpu/visiontek-radeon-5450-1gb.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -73,6 +75,8 @@
             
               <ul>
                 
+                  <li><a href="https://www.youtube.com/watch?v=crnEygp4C6g">FINALLY! A GPU works on the Raspberry Pi!</a></a></li>
+                
                   <li><a href="https://www.youtube.com/watch?v=ikpgZu6kLKE">GPUs on a Raspberry Pi Compute Module 4!</a></a></li>
                 
               </ul>
@@ -81,9 +85,21 @@
 
         <div class="card_content">
           <h3>Description and Notes</h3>
-          <p>This graphics card needs <a href="https://amzn.to/3dZQM2u">x1 to x16 powered adapter</a>. The <code class="language-plaintext highlighter-rouge">radeon</code> driver for this card requires a kernel recompile, and the card is too old to be compatible with the <code class="language-plaintext highlighter-rouge">amdgpu</code> drivers.</p>
+          <p>This graphics card needs a <a href="https://amzn.to/3dZQM2u">x1 to x16 powered adapter</a>. The <code class="language-plaintext highlighter-rouge">radeon</code> driver for this card requires a kernel recompile, and the card is too old to be compatible with the <code class="language-plaintext highlighter-rouge">amdgpu</code> drivers.</p>
 
-<p>So far GitHub user <a href="https://github.com/Coreforge">Coreforge</a> has been able to get the card to display terminal output in color, but has had trouble with any kind of GPU acceleration. The required modificiations are in the <a href="https://github.com/Coreforge/linux/tree/gpu-debug-5.10.y">gpu-debug-5.10.y branch</a> in Coreforge’s fork of the Raspberry Pi Linux kernel repository.</p>
+<p>So far GitHub user <a href="https://github.com/Coreforge">Coreforge</a> has been able to get the card to display terminal output in color, and with a patched <code class="language-plaintext highlighter-rouge">memcpy.so</code> library can get GPU acceleration and a window manager loaded, though there are still many small issues.</p>
+
+<p>To get the card working currently, you need to:</p>
+
+<ol>
+  <li>Image Pi OS (the older January 2022 copy built on top of Debian 5.10.x) to your Pi.</li>
+  <li>Compile <a href="https://github.com/Coreforge/linux/pull/1">Coreforge’s GPU branch</a> and copy the built kernel to the Pi.</li>
+  <li>Install AMD firmware: <code class="language-plaintext highlighter-rouge">sudo apt install -y firmware-amd-graphics</code></li>
+  <li>Set up <a href="https://gist.github.com/Coreforge/91da3d410ec7eb0ef5bc8dee24b91359">this custom memcpy.so</a> to be preloaded on the system.</li>
+  <li>Reboot.</li>
+</ol>
+
+<p>Once that’s done, you should be able to get Xorg working, or just a console. Note that the driver doesn’t seem quite stable yet.</p>
 
 <p>See linked GitHub issue for more details and progress getting the card working.</p>
 

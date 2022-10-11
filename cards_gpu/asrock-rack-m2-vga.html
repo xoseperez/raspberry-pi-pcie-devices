@@ -18,10 +18,12 @@
 <link rel="canonical" href="https://pipci.jeffgeerling.com//cards_gpu/asrock-rack-m2-vga.html" />
 <meta property="og:url" content="https://pipci.jeffgeerling.com//cards_gpu/asrock-rack-m2-vga.html" />
 <meta property="og:site_name" content="Raspberry Pi PCIe Devices" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-11T11:32:23+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="ASRock Rack M2_VGA" />
 <script type="application/ld+json">
-{"description":"The M2_VGA is a tiny M.2 form-factor video card that features the SM750 GPU. This GPU doesn’t have a 3D rendering engine, it only has 16 MB of RAM, and it’s meant more for basic graphics like you’d find in a kiosk or an appliance—or as a very simple and power-efficient graphics processor for a server.","url":"https://pipci.jeffgeerling.com//cards_gpu/asrock-rack-m2-vga.html","@type":"WebPage","headline":"ASRock Rack M2_VGA","@context":"https://schema.org"}</script>
+{"description":"The M2_VGA is a tiny M.2 form-factor video card that features the SM750 GPU. This GPU doesn’t have a 3D rendering engine, it only has 16 MB of RAM, and it’s meant more for basic graphics like you’d find in a kiosk or an appliance—or as a very simple and power-efficient graphics processor for a server.","url":"https://pipci.jeffgeerling.com//cards_gpu/asrock-rack-m2-vga.html","@type":"BlogPosting","headline":"ASRock Rack M2_VGA","dateModified":"2022-10-11T11:32:23+00:00","datePublished":"2022-10-11T11:32:23+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://pipci.jeffgeerling.com//cards_gpu/asrock-rack-m2-vga.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   </head>
@@ -73,6 +75,8 @@
             
               <ul>
                 
+                  <li><a href="https://www.youtube.com/watch?v=crnEygp4C6g">FINALLY! A GPU works on the Raspberry Pi!</a></a></li>
+                
                   <li><a href="https://www.youtube.com/watch?v=MxcafwjWw24">Will ANY GPUs work on the Raspberry Pi?</a></a></li>
                 
               </ul>
@@ -95,9 +99,11 @@
 
 <p>Go to <code class="language-plaintext highlighter-rouge">Device Drivers</code> &gt; <code class="language-plaintext highlighter-rouge">Graphics support</code> on the <code class="language-plaintext highlighter-rouge">menuconfig</code> step, and select the <code class="language-plaintext highlighter-rouge">Silicon Motion SM750 framebuffer support</code> driver to install.</p>
 
-<p>After copying over the new kernel and modules, and rebooting, the entire Pi locks up and requires a hard power reset. Go figure.</p>
+<p>Before you compile the kernel, apply <a href="https://patch-diff.githubusercontent.com/raw/geerlingguy/linux/pull/2.diff">this patch</a> to your Linux checkout.</p>
 
-<p>See the linked GitHub issue for more details on how I tested this card. I’ve even tried contacting kernel maintainers who are or were listed as working on the module in the past, but to no avail.</p>
+<p>After copying over the new kernel and modules, and rebooting, the Pi should be able to at least boot to the console. Xorg and other window managers don’t seem to work.</p>
+
+<p>See the linked GitHub issue for more details.</p>
 
         </div>
 
